@@ -1,9 +1,10 @@
 ---
 import styles from "../styles/globals.css?url"
 // import "@/styles/globals.css"
+import Search from "../components/search"
 ---
 
-<html lang="en">
+<html lang="ar" dir="rtl">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -11,9 +12,14 @@ import styles from "../styles/globals.css?url"
 		<meta name="generator" content={Astro.generator} />
 		<link rel="stylesheet" href={styles}>
 
-		<title>Astro</title>
+		<title>تجميعه</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<header>
+			<nav class="px-10 py-5 flex justify-between gap-5">
+				<img src="/logo.svg" width="150" height="47" alt="">
+				<Search client:idle />
+			</nav>
+		</header>
 	</body>
 </html>

@@ -2,18 +2,21 @@
 import styles from "../styles/globals.css?url"
 // import "@/styles/globals.css"
 import Search from "../components/search"
+import { BaseHead } from "astro-toolkit/seo"
+
 ---
 
 <html lang="ar" dir="rtl">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<link rel="stylesheet" href={styles}>
 
-		<title>تجميعه</title>
-	</head>
+		<BaseHead title="تجميعه"
+			description="تجميعه"
+			keywords={["تجميعه", "مبادرة", "مشاريع"]}
+			OGImage={{ src: "/og.png", alt: "Image description" }}
+			GSVToken="your-google-site-verification-token"
+			extend={{link: [styles]}}>
+				<meta name="generator" content={Astro.generator} />
+				<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		</BaseHead>
 	<body>
 		<header>
 			<nav class="px-10 py-5 flex justify-between gap-5">

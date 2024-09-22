@@ -19,6 +19,7 @@
     "@types/react": "^18.3.7",
     "@types/react-dom": "^18.3.0",
     "astro": "^4.15.7",
+    "astro-toolkit": "^0.2.10",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",

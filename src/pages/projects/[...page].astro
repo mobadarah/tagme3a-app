@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from "@/layout/BaseLayout.astro"
+import { For } from 'astro-toolkit/flow'
+
+import { Image } from 'astro:assets'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+export async function getStaticPaths({ paginate }) {
+  const blog = await getCollection('projects')
+
+  return paginate(blog, { pageSize: 5 })
+}
+
+const { page } = Astro.props
+const pathname = new URL(Astro.request.url).pathname.split('/')
+const firstPath = pathname[1]
+---
+
+<BaseLayout title="تجميعه" description="تجميعه" keywords={["تجميعه", "وثقني"]}>
+  <div class="container  px-5 mx-auto">
+
+  
+  <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-10 mt-20 ransition-all">
+    <For each={page.data}>
+      {(project)=> (
+          <Card className="md:max-w-[350px] w-full">
+        <CardHeader>
+          <CardTitle>{project.data.title}</CardTitle>
+          <CardDescription>{project.data.description}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Image class='h-auto' src={project.data.OGImage ?? "https://www.vocaleurope.eu/wp-content/uploads/no-image.jpg"} width={700} height={350} alt='adw' />
+        </CardContent>
+        <CardFooter className="flex justify-between">
+  
+        </CardFooter>
+      </Card>        
+      )}
+    </For>
+  </div>
+</div>
+</BaseLayout>
+
+    <!-- <Pagination 
+      length={page.lastPage} 
+      currentUrl={page.url.current} 
+      currentPage={page.currentPage} 
+      firstUrl={`/${firstPath}`} 
+      prevUrl={page.url.prev} 
+      nextUrl={page.url.next} 
+      lastUrl={`/${firstPath}/${page.lastPage}`}
+    /> -->
+
+
+
+

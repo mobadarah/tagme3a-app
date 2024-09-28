@@ -1,0 +1,37 @@
+---
+import { BaseHead } from "astro-toolkit/seo"
+import styles from "../styles/globals.css?url"
+import Search from "../components/search"
+
+interface Props {
+  title: string
+  description: string
+  keywords: string[]
+  OGImage?: string
+}
+
+const {title,description,keywords} = Astro.props
+---
+
+<html lang="ar" dir="rtl">
+
+		<BaseHead 
+      title={title}
+			description={description}
+			keywords={keywords}
+			OGImage={{ src: "/og.png", alt: "Image description" }}
+			GSVToken="your-google-site-verification-token"
+			extend={{link: [styles]}}>
+				<meta name="generator" content={Astro.generator} />
+				<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		</BaseHead>
+	<body>
+    <header>
+      <nav class="px-10 py-5 flex justify-between gap-5">
+        <img src="/logo.svg" width="150" height="47" alt="">
+        <Search client:idle />
+      </nav>
+    </header>
+    <slot />
+	</body>
+</html>
